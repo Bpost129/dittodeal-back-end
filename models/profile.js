@@ -2,12 +2,26 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const reviewSchema = new Schema({
+  text: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
+  },
+}, { timestamps: true })
+
 const profileSchema = new Schema({
   name: String,
   photo: String,
   favorites: [{ type: Schema.Types.ObjectId, ref: 'Profile' }],
   listings: [{ type: Schema.Types.ObjectId, ref: 'Listing' }],
-  // reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
+  reviews: [reviewSchema]
 },{
   timestamps: true,
 })

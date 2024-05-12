@@ -30,4 +30,63 @@ async function addPhoto(req, res) {
   }
 }
 
-export { index, addPhoto }
+async function show(req, res) {
+  try {
+    const profile = await Profile.findById(req.params.id)
+      .populate('reviews.author')
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function createReview(req, res) {
+  try {
+    req.body.author = req.user.profile
+    const profile = await Profile.findById(req.params.id)
+    profile.reviews.push(req.body)
+    await profile.save()
+    const newReview = profile.reviews.at(-1)
+    const currProfile = await Profile.findById(req.user.profile)
+    newReview.author = currProfile
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function updateReview(req, res) {
+  try {
+    const profile = await Profile.findById(req.params.id)
+    const review = profile.reviews.id(req.body._id)
+    review.text = req.body.text
+    await profile.save()
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function deleteReview(req, res) {
+  try {
+    const profile = await Profile.findById(req.params.id)
+    profile.reviews.remove({ _id: req.params.reviewId })
+    await profile.save()
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+export { 
+  index, 
+  addPhoto, 
+  show,
+  createReview,
+  updateReview,
+  deleteReview,
+}

@@ -8,6 +8,7 @@ const userSchema = new Schema({
   name: String,
   email: { type: String, required: true, lowercase: true },
   password: String,
+  accountLevel: { type: Number, required: true, enum: [1, 2], default: 1 },
   profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
 }, {
   timestamps: true,
