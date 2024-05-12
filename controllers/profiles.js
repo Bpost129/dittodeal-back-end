@@ -82,6 +82,36 @@ async function deleteReview(req, res) {
   }
 }
 
+// addFavorite
+async function addFavorite(req, res) {
+  try {
+    // req.body.author = req.user.profile
+    const favorite = await Profile.findById(req.params.id)
+    const profile = await Profile.findByIdAndUpdate(
+      req.user.profile,
+      { $push: {favorites: favorite} },
+      { new: true }
+    )
+    res.status(201).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+// removeFavorite
+async function removeFavorite(req, res) {
+  try {
+    const profile = await Profile.findById(req.user.profile)
+    profile.favorites.remove({ _id: req.params.id })
+    await profile.save()
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export { 
   index, 
   addPhoto, 
@@ -89,4 +119,7 @@ export {
   createReview,
   updateReview,
   deleteReview,
+  addFavorite,
+  removeFavorite,
+
 }

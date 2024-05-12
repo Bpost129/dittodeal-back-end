@@ -14,4 +14,5 @@ router.put('/:listingId', checkAuth, listingCtrl.update)
 router.delete('/:listingId', checkAuth, listingCtrl.delete)
 // router.delete('/:listingId/reviews/:reviewId', checkAuth, listingCtrl.deleteReview)
 
+
 export { router }
