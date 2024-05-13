@@ -6,11 +6,12 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
+router.get('/:id', profilesCtrl.show)
 
 /*---------- Protected Routes ----------*/
+
 router.use(decodeUserFromToken)
-router.get('/', checkAuth, profilesCtrl.index)
-router.get('/:id', checkAuth, profilesCtrl.show)
+router.get('/', profilesCtrl.index)
 router.post('/:id', checkAuth, profilesCtrl.addFavorite)
 router.post('/:id/reviews', checkAuth, profilesCtrl.createReview)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
