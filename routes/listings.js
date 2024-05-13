@@ -4,9 +4,14 @@ import * as listingCtrl from "../controllers/listings.js"
 
 const router = Router()
 
-router.use(decodeUserFromToken)
+/*---------- Public Routes ----------*/
+
 router.get('/', listingCtrl.index)
-router.get('/:listingId', checkAuth, listingCtrl.show)
+router.get('/:listingId', listingCtrl.show)
+
+/*---------- Protected Routes ----------*/
+
+router.use(decodeUserFromToken)
 router.post('/', checkAuth, listingCtrl.create)
 // router.post('/:listingId/reviews', checkAuth, listingCtrl.createReview)
 router.put('/:listingId', checkAuth, listingCtrl.update)
