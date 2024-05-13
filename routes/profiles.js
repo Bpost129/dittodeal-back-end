@@ -6,7 +6,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
-router.get('/:id', checkAuth, profilesCtrl.show)
+router.get('/:id', profilesCtrl.show)
 
 /*---------- Protected Routes ----------*/
 
