@@ -33,7 +33,7 @@ async function addPhoto(req, res) {
 async function show(req, res) {
   try {
     const profile = await Profile.findById(req.params.id)
-      .populate('reviews.author')
+      .populate(['favorites', 'listings', 'reviews.author'])
     res.status(200).json(profile)
   } catch (err) {
     console.log(err)
