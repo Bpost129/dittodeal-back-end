@@ -34,8 +34,8 @@ const listingSchema = new Schema({
     required: true,
     enum: ['Vehicles', 'Apparel', 'Electronics', 'Entertainment', 'Garden & Outdoor', 'Home Goods', 'Home Improvement', 'Music', 'Office Supplies', 'Pet Supplies', 'Sporting Goods', 'Toys & Games']
   },
-  picture: {
-    type: String,
+  photos: {
+    type: [String],
     required: true,
   },
   avgRating: {
