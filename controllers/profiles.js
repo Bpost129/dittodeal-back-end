@@ -43,6 +43,7 @@ async function show(req, res) {
 
 async function createReview(req, res) {
   try {
+    console.log('createReview controller is running')
     req.body.author = req.user.profile
     const profile = await Profile.findById(req.params.id)
     profile.reviews.push(req.body)
@@ -50,7 +51,8 @@ async function createReview(req, res) {
     const newReview = profile.reviews.at(-1)
     const currProfile = await Profile.findById(req.user.profile)
     newReview.author = currProfile
-    res.status(200).json(profile)
+    res.status(200).json(newReview)
+    console.log('createReview is done!!!')
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
