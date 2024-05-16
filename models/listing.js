@@ -38,9 +38,6 @@ const listingSchema = new Schema({
     type: [String],
     required: true,
   },
-  avgRating: {
-    type: Number
-  },
   author: {
     type: Schema.Types.ObjectId,
     ref: 'Profile',

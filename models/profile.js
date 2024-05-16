@@ -19,6 +19,7 @@ const reviewSchema = new Schema({
 const profileSchema = new Schema({
   name: String,
   photo: String,
+  avgRating: Number,
   favorites: [{ type: Schema.Types.ObjectId, ref: 'Profile' }],
   listings: [{ type: Schema.Types.ObjectId, ref: 'Listing' }],
   reviews: [reviewSchema]
