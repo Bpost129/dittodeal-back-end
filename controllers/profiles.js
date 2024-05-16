@@ -15,7 +15,6 @@ async function addPhoto(req, res) {
   try {
     const imageFile = req.files.photo.path
     const profile = await Profile.findById(req.params.id)
-
     const image = await cloudinary.uploader.upload(
       imageFile, 
       { tags: `${req.user.email}` }
@@ -90,10 +89,8 @@ async function deleteReview(req, res) {
   }
 }
 
-// addFavorite
 async function addFavorite(req, res) {
   try {
-    // req.body.author = req.user.profile
     const favorite = await Profile.findById(req.params.id)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
@@ -107,7 +104,6 @@ async function addFavorite(req, res) {
   }
 }
 
-// removeFavorite
 async function removeFavorite(req, res) {
   try {
     const profile = await Profile.findById(req.user.profile)

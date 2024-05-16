@@ -2,20 +2,6 @@ import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
 
-// const reviewSchema = new Schema({
-//   text: {
-//     type: String,
-//     required: true,
-//   },
-//   rating: {
-//     type: Number,
-//   },
-//   author: {
-//     type: Schema.Types.ObjectId,
-//     ref: 'Profile',
-//   },
-// }, { timestamps: true })
-
 const listingSchema = new Schema({
   title: {
     type: String,
@@ -42,7 +28,6 @@ const listingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile',
   },
-  // reviews: [reviewSchema]
 }, { timestamps: true })
 
 const Listing = mongoose.model('Listing', listingSchema)

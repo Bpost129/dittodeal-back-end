@@ -73,55 +73,11 @@ async function deleteListing(req, res) {
   }
 }
 
-// async function createReview(req, res) {
-//   try {
-//     req.body.author = req.user.profile
-//     const listing = await Listing.findById(req.params.listingId)
-//     listing.reviews.push(req.body)
-//     await listing.save()
-//     const newReview = listing.reviews.at(-1)
-//     const profile = await Profile.findById(req.user.profile)
-//     newReview.author = profile
-//     res.status(200).json(listing)
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err)
-//   }
-// }
-
-// async function updateReview(req, res) {
-//   try {
-//     const listing = await Listing.findById(req.params.listingId)
-//     const review = listing.reviews.id(req.body._id)
-//     review.text = req.body.text
-//     await listing.save()
-//     res.status(200).json(listing)
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err)
-//   }
-// }
-
-// async function deleteReview(req, res) {
-//   try {
-//     const listing = await Listing.findById(req.params.listingId)
-//     listing.reviews.remove({ _id: req.params.reviewId })
-//     await listing.save()
-//     res.status(200).json(listing)
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err)
-//   }
-// }
-
 export {
   create,
   index,
   show,
   update,
   deleteListing as delete,
-  // createReview,
-  // updateReview,
-  // deleteReview,
 
 }
