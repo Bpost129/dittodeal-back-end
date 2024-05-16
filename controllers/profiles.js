@@ -34,6 +34,12 @@ async function show(req, res) {
   try {
     const profile = await Profile.findById(req.params.id)
       .populate(['favorites', 'listings', 'reviews.author'])
+    let total = 0
+    profile.reviews.forEach(review => {
+      total += review.rating
+    })
+    await profile.save()
+    profile.avgRating = (total / profile.reviews.length)
     res.status(200).json(profile)
   } catch (err) {
     console.log(err)
