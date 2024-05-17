@@ -58,7 +58,7 @@ async function update(req, res) {
 async function deleteListing(req, res) {
   try {
     const listing = await Listing.findById(req.params.listingId)
-    if (listing.author.equals(req.user.profile)) {
+    if (listing.author.equals(req.user.profile) || req.user.accountLevel == 2) {
       await Listing.findByIdAndDelete(req.params.listingId)
       const profile = await Profile.findById(req.user.profile)
       profile.listings.remove({ _id: req.params.listingId })
